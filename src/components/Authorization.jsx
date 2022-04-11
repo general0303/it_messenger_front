@@ -3,7 +3,6 @@ import Input from "./Input";
 import {useState} from "react";
 import {authorization} from "../actions/user";
 import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
 
 function Authorization() {
     const [username, setUsername] = useState("")

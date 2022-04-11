@@ -6,34 +6,34 @@ function Header(){
     return (
         <div className="Header">
             <div className="Left-Part">
-                <div className="Element" onClick={() => logout()}>
+                {sessionStorage.getItem("token") && <div className="Element" onClick={() => logout()}>
                     <div className="Door">
-                        <img src={door}></img>
+                        <img alt="" src={door}/>
                     </div>
-                </div>
+                </div>}
                 <div className="Element">Название</div>
             </div>
-            <div className="Right-part">
+            {sessionStorage.getItem("token") && <div className="Right-part">
                 <div className="Element">
                     <div className="Avatar">
-                        <img src={door}></img>
+                        <img alt="" src={door}/>
                     </div>
                 </div>
-            </div>
-            <div className="Right-part">
+            </div>}
+            {sessionStorage.getItem("token") && <div className="Right-part">
                 <div className="Element">
                     <div className="Login">
                         Логин
                     </div>
                 </div>
-            </div>
-            <div className="Right-part">
+            </div>}
+            {sessionStorage.getItem("token") && <div className="Right-part">
                 <div className="Element">
                     <div className="Plus">
-                        <img src={plus}></img>
+                        <img alt="" src={plus}/>
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }
