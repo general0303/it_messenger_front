@@ -1,6 +1,8 @@
 import door from '../images/exit_white.png'
 import plus from '../images/plus_icon.png'
+import home from '../images/home.png'
 import {logout} from "../actions/user";
+import {NavLink} from "react-router-dom";
 
 function Header(){
     return (
@@ -9,6 +11,11 @@ function Header(){
                 {sessionStorage.getItem("token") && <div className="Element" onClick={() => logout()}>
                     <div className="Door">
                         <img alt="" src={door}/>
+                    </div>
+                </div>}
+                {sessionStorage.getItem("token") && <div className="Element">
+                    <div className="Home">
+                        <NavLink to="/"><img alt="" src={home}/></NavLink>
                     </div>
                 </div>}
                 <div className="Element">Название</div>
