@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
 }
 
 .App-logo {
@@ -35,4 +34,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App-Menu {
+  display: inline-block;
+  width: 20%;
+}
+
+.App-Content {
+  float: right;
+  width: 72%;
+  top: 50px;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+}
+
+.Content{
+  text-align: center;
 }
