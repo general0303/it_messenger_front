@@ -10,8 +10,11 @@ input {
 input:focus {
   outline: none;
   font-size: 1em;
-  color: white;
-  background-color: #04454d;
+  border: 1px solid black;
+}
+
+input:hover{
+  border: 1px solid black;
 }
 
 ::-webkit-input-placeholder { /* Chrome */

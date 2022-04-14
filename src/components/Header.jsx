@@ -3,8 +3,12 @@ import plus from '../images/plus_icon.png'
 import home from '../images/home.png'
 import {logout} from "../actions/user";
 import {NavLink} from "react-router-dom";
+import Model from "./Model";
+import {useState} from "react";
+import CreateChat from "./CreateChat";
 
 function Header(){
+    const [modelActive, setModelActive] = useState(false)
     return (
         <div className="Header">
             <div className="Left-Part">
@@ -30,17 +34,20 @@ function Header(){
             {sessionStorage.getItem("token") && <div className="Right-part">
                 <div className="Element">
                     <div className="Login">
-                        Логин
+                        {sessionStorage.getItem("username")}
                     </div>
                 </div>
             </div>}
             {sessionStorage.getItem("token") && <div className="Right-part">
-                <div className="Element">
+                <div className="Element" onClick={() => setModelActive(true)}>
                     <div className="Plus">
                         <img alt="" src={plus}/>
                     </div>
                 </div>
             </div>}
+            <Model active={modelActive} setActive={setModelActive}>
+                <CreateChat active={modelActive} setActive={setModelActive}/>
+            </Model>
         </div>
     )
 }
