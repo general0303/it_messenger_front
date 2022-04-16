@@ -28,6 +28,7 @@ export const logout = () => {
         sessionStorage.removeItem("id")
         sessionStorage.removeItem("username")
         sessionStorage.removeItem("chats")
+        sessionStorage.removeItem("invite")
     }
     document.location.reload()
 }

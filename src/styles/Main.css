@@ -21,6 +21,38 @@
     background-color: gainsboro;
 }
 
+.Invite{
+  display: flex;
+  width: 400px;
+  align-items: center;
+  border-radius: 20px;
+    color: black;
+  padding: 10px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.Invitation{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  align-items: center;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.Invitation-Header{
+  font-size: 30px;
+  font-weight: 700;
+  color: #04454d;
+  margin: 10px 0;
+}
+
+.Invite:hover{
+    border: 1px solid black;
+    background-color: gainsboro;
+}
+
 .Left{
     display: inline-block;
 }
@@ -38,6 +70,8 @@
 }
 
 .Name{
+    color: black;
+    margin: 0 10px 0 0;
 }
 
 button{
@@ -75,6 +109,36 @@ button{
 }
 
 .Update a {
+  color: white;
+  text-decoration: none;
+}
+
+.Accept{
+    border: none;
+  background-color: #04454d;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.Decline{
+    border: none;
+  background-color: red;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.Decline a {
+  color: white;
+  text-decoration: none;
+}
+
+.Accept a {
   color: white;
   text-decoration: none;
 }

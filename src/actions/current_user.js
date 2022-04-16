@@ -5,6 +5,7 @@ export const current_user = async () => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     try {
         const response = await axios.get('http://localhost:5000/current_user', {headers: {Authorization: header}})
+        sessionStorage.setItem("invite", JSON.stringify(response.data.invites))
         return response.data
     } catch (e) {
         alert(e.response.data.message)
@@ -35,6 +36,28 @@ export const createChat = async (name, file, navigate, active, setActive) => {
         const response = await axios.post('http://localhost:5000/chat',formData, {headers: {Authorization: header}})
         setActive(false)
         navigate("/chats/"+response.data.chat_id)
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
+export const acceptTheInvite = async (invite, navigate, active, setActive) => {
+    let header = 'Bearer ' + sessionStorage.getItem("token")
+    try {
+        const response = await axios.get('http://localhost:5000/accept_the_invitation/'+invite.invite_id, {headers: {Authorization: header}})
+        setActive(false)
+        navigate("/chats/"+invite.chat_id)
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
+export const declineTheInvite = async (invite, navigate, active, setActive) => {
+    let header = 'Bearer ' + sessionStorage.getItem("token")
+    try {
+        const response = await axios.get('http://localhost:5000/decline_the_invitation/'+invite.invite_id, {headers: {Authorization: header}})
+        setActive(false)
+        navigate("/")
     } catch (e) {
         alert(e.response.data.message)
     }

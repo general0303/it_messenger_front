@@ -7,8 +7,6 @@ function Menu() {
         let chats
         current_user_chats()
         chats = JSON.parse(sessionStorage.getItem("chats"))
-        console.log(chats)
-        chats.map(chat => console.log(chat))
         if (!chats){
             return (
                 <div className="Menu">

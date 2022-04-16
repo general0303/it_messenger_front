@@ -10,8 +10,6 @@ function Main(){
     let data = current_user()
     let chats
     chats = JSON.parse(sessionStorage.getItem("chats"))
-    console.log(chats)
-    chats.map(chat => console.log(chat))
     const [value, setValue] = useState("")
     if (!chats) {
         return
@@ -41,7 +39,7 @@ function Main(){
                         <NavLink to={"/chats/"+chat.chat_id}>
                         <div className="Chat">
                             <tr>
-                                <th>
+                                <th width="48">
                                     <div className="Left">
                                         <div className="Image">
                                             {!chat.chat_image && <img alt="" src={not_image}/>}
@@ -49,7 +47,7 @@ function Main(){
                                         </div>
                                     </div>
                                 </th>
-                                <th>
+                                <th width="400">
                                     <div className="Right">
                                         <div className="Name">{chat.chat_name}</div>
                                         {sessionStorage.getItem("username") === chat.admin.username && <button className="Update"><NavLink to={"/chats/"+chat.chat_id+"/update"}>Редактировать</NavLink></button>}
