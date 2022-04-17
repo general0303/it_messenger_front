@@ -52,6 +52,7 @@ function Main(){
                                         <div className="Name">{chat.chat_name}</div>
                                         {sessionStorage.getItem("username") === chat.admin.username && <button className="Update"><NavLink to={"/chats/"+chat.chat_id+"/update"}>Редактировать</NavLink></button>}
                                         {sessionStorage.getItem("username") === chat.admin.username && <button className="Delete"><NavLink to={"/chats/"+chat.chat_id+"/delete"}>Удалить</NavLink></button>}
+                                        {sessionStorage.getItem("username") !== chat.admin.username && <button className="Delete"><NavLink to={"/chats/"+chat.chat_id+"/left"}>Покинуть чат</NavLink></button>}
                                     </div>
                                 </th>
                             </tr>

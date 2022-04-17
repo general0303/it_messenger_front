@@ -71,7 +71,7 @@
 
 .Name{
     color: black;
-    margin: 0 10px 0 0;
+    margin: 0 10px 15px 0;
 }
 
 button{
@@ -81,7 +81,7 @@ button{
 
 .Update{
     padding: 5px 10px;
-    margin: 15px 30px 5px 100px;
+    margin: 0 30px 5px 100px;
     border: none;
   background-color: #04454d;
   border-radius: 8px;
