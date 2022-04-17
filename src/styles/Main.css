@@ -21,6 +21,53 @@
     background-color: gainsboro;
 }
 
+.Message{
+    float: left;
+    text-align: left;
+  width: 600px;
+  border-radius: 20px;
+    color: black;
+  padding: 15px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.Message:hover{
+    border: 1px solid black;
+    background-color: gainsboro;
+}
+
+.Send{
+    position: fixed;
+    bottom: 20px;
+    left: 37vw;
+    width: 550px;
+    height: 24px;
+    border-color: #04454d;
+    border-bottom: #04454d 3px;
+    background: transparent;
+    padding: 3px;
+    color: #04454d;
+    font-size: 1.2em;
+}
+
+.TextArea{
+    width: 550px;
+    height: 24px;
+    border-color: #04454d;
+    border-bottom: #04454d 3px;
+    background: transparent;
+    padding: 3px;
+    color: #04454d;
+    font-size: 1.2em;
+}
+
+.Send:focus {
+  outline: none;
+  font-size: 1em;
+  border-color: #04454d;
+}
+
 .Invite{
   display: flex;
   width: 400px;
