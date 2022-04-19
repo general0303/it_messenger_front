@@ -24,3 +24,17 @@ export const write_message = (id, body) => {
         alert(e.response.data.message)
     }
 }
+
+export const create_attachment = (id, file) => {
+    let header = 'Bearer ' + sessionStorage.getItem("token")
+    let url = 'http://localhost:5000/create_attachment'
+    const formData = new FormData()
+    formData.append("file", file)
+    formData.append("chat_id", id)
+    try {
+        const response = axios.post(url, formData,{headers: {Authorization: header}}).then((response) => {
+            document.location.reload()})
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
