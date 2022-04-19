@@ -1,0 +1,11 @@
+.Drag{
+    width: 60vw;
+    height: calc(100vh - 70px - 40px);
+    margin: 20px;
+    border: dashed #04454d 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #04454d;
+}

@@ -8,15 +8,44 @@ import send from "../images/send.png"
 import {chat_messages, create_attachment, write_message} from "../actions/chat";
 import file_icon from "../images/file.png"
 import InputFile from "./Input-file";
+import "../styles/Chat.css"
 
 function Chat(){
     const [value, setValue] = useState("")
+    const [dragEnter, setDragEnter] = useState(false)
     let chat_id = useParams().chat_id
+
+    function onDragEnterHandler(event) {
+    event.preventDefault()
+    event.stopPropagation()
+    setDragEnter(true)
+    }
+
+    function onDragLeaveHandler(event) {
+    event.preventDefault()
+    event.stopPropagation()
+    setDragEnter(false)
+    }
+
+    function onDragOverHandler(event) {
+    event.preventDefault()
+    event.stopPropagation()
+    setDragEnter(false)
+    }
+
+    function dropHandler(event){
+        event.preventDefault()
+        event.stopPropagation()
+        let files = [...event.dataTransfer.files]
+        console.log(files)
+        create_attachment(chat_id, files)
+        setDragEnter(false)
+    }
     chat_messages(chat_id)
     let messages = JSON.parse(sessionStorage.getItem("messages"))
     console.log(messages)
-    return (
-        <div>
+    return (!dragEnter ?
+        <div onDragEnter={onDragEnterHandler} onDrop={dropHandler} onDragLeave={onDragLeaveHandler} onDragOver={onDragEnterHandler}>
             <br></br>
             <table>
                 {messages.map(message =>
@@ -58,9 +87,6 @@ function Chat(){
                value={value}></textarea>
                             </th>
                             <th>
-                                <input type="file" placeholder="" onChange = {(event) => create_attachment(chat_id, event.target.files[0])}/>
-                            </th>
-                            <th>
                                 <img alt="" src={send} onClick={() => write_message(chat_id, value)}/>
                             </th>
                         </tr>
@@ -68,6 +94,8 @@ function Chat(){
                 </div>
             </footer>
         </div>
+            :
+            <div className="Drag" onDrop={dropHandler} onDragEnter={onDragEnterHandler} onDragLeave={onDragLeaveHandler} onDragOver={onDragEnterHandler}>Перетащите файлы сюда</div>
     )
 }
 

@@ -25,11 +25,14 @@ export const write_message = (id, body) => {
     }
 }
 
-export const create_attachment = (id, file) => {
+export const create_attachment = (id, files) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     let url = 'http://localhost:5000/create_attachment'
     const formData = new FormData()
-    formData.append("file", file)
+    //formData.append("file", file)
+    for (let i=0; i<files.length; i++){
+        formData.append("file", files[i])
+    }
     formData.append("chat_id", id)
     try {
         const response = axios.post(url, formData,{headers: {Authorization: header}}).then((response) => {
