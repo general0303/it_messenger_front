@@ -18,7 +18,6 @@ function Header(){
     if (!invites){
         invites = []
     }
-    console.log(invites)
     return (
         <div className="Header">
             <div className="Left-Part">
