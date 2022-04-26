@@ -26,6 +26,9 @@ export const getUser = async (id) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     try {
         const response = await axios.get('http://localhost:5000/users/'+id, {headers: {Authorization: header}})
+        if (!sessionStorage.getItem("user")){
+                document.location.reload()
+            }
         sessionStorage.setItem("user", JSON.stringify(response.data))
     } catch (e) {
         alert(e.response.data.message)

@@ -46,6 +46,29 @@ export const admin = (id) => {
     }
 }
 
+export const deleteChat = (id) => {
+    let header = 'Bearer ' + sessionStorage.getItem("token")
+    try {
+        const response = axios.delete('http://localhost:5000/chats/'+id, {headers: {Authorization: header}}).then((response) => {
+            document.location.reload()
+        })
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
+
+export const leftChat = (id) => {
+    let header = 'Bearer ' + sessionStorage.getItem("token")
+    try {
+        const response = axios.delete('http://localhost:5000/chats/'+id+'/left', {headers: {Authorization: header}}).then((response) => {
+            document.location.reload()
+        })
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
 export const chat_users = (id) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     try {

@@ -5,6 +5,7 @@ import "../styles/Main.css"
 import Input from "./Input";
 import {useState} from "react";
 import search from '../images/search.png'
+import {deleteChat, leftChat} from "../actions/chat";
 
 function Main(){
     let data = current_user()
@@ -38,28 +39,30 @@ function Main(){
             </form>
                 <table>
                     {filteredChats.map(chat =>
-                        <NavLink to={"/chats/"+chat.chat_id}>
                         <div className="Chat">
                             <tr>
                                 <th width="48">
                                     <div className="Left">
+                                        <NavLink to={"/chats/"+chat.chat_id}>
                                         <div className="Image">
                                             {!chat.chat_image && <img alt="" src={not_image}/>}
                                             {chat.chat_image && <img alt="" src={"http://localhost:5000/"+chat.chat_image} width="48"/>}
                                         </div>
+                                            </NavLink>
                                     </div>
                                 </th>
                                 <th width="400">
                                     <div className="Right">
-                                        <div className="Name">{chat.chat_name}</div>
-                                        {sessionStorage.getItem("username") === chat.admin.username && <button className="Update"><NavLink to={"/chats/"+chat.chat_id+"/update"}>Редактировать</NavLink></button>}
-                                        {sessionStorage.getItem("username") === chat.admin.username && <button className="Delete"><NavLink to={"/chats/"+chat.chat_id+"/delete"}>Удалить</NavLink></button>}
-                                        {sessionStorage.getItem("username") !== chat.admin.username && <button className="Delete"><NavLink to={"/chats/"+chat.chat_id+"/left"}>Покинуть чат</NavLink></button>}
+                                        <NavLink to={"/chats/"+chat.chat_id}>
+                                            <div className="Name">{chat.chat_name}</div>
+                                        </NavLink>
+                                        {sessionStorage.getItem("username") === chat.admin.username && <button className="Update" onClick={() => deleteChat(chat.chat_id)}>Редактировать</button>}
+                                        {sessionStorage.getItem("username") === chat.admin.username && <button className="Delete" onClick={() => deleteChat(chat.chat_id)}>Удалить</button>}
+                                        {sessionStorage.getItem("username") !== chat.admin.username && <button className="Delete" onClick={() => leftChat(chat.chat_id)}>Покинуть чат</button>}
                                     </div>
                                 </th>
                             </tr>
                         </div>
-                            </NavLink>
                     )}
                 </table>
         </div>
