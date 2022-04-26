@@ -35,6 +35,16 @@ export const users = (id) => {
     }
 }
 
+export const admin = (id) => {
+    let header = 'Bearer ' + sessionStorage.getItem("token")
+    try {
+        const response = axios.get('http://localhost:5000/chats/'+id, {headers: {Authorization: header}}).then((response) => {
+            sessionStorage.setItem('admin', JSON.stringify(response.data.admin))
+        })
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
 
 export const chat_users = (id) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")

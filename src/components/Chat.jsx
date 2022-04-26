@@ -1,13 +1,20 @@
-import {createChat, current_user} from "../actions/current_user";
 import {useState} from "react";
 import Input from "./Input";
 import search from "../images/search.png";
-import {NavLink, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import not_image from "../images/not_image.png";
 import send from "../images/send.png"
-import {chat_messages, chat_users, create_attachment, create_invitation, users, write_message} from "../actions/chat";
+import {
+    admin,
+    chat_messages,
+    chat_users,
+    create_attachment,
+    create_invitation,
+    users,
+    write_message
+} from "../actions/chat";
 import file_icon from "../images/file.png"
-import InputFile from "./Input-file";
+// import InputFile from "./Input-file";
 import "../styles/Chat.css"
 
 function Chat(){
@@ -17,6 +24,7 @@ function Chat(){
     let chat_id = useParams().chat_id
     users(chat_id)
     chat_users(chat_id)
+    admin(chat_id)
 
     function onDragEnterHandler(event) {
     event.preventDefault()
@@ -30,11 +38,12 @@ function Chat(){
     setDragEnter(false)
     }
 
-    function onDragOverHandler(event) {
+    /**function onDragOverHandler(event) {
     event.preventDefault()
     event.stopPropagation()
     setDragEnter(false)
     }
+     **/
 
     function dropHandler(event){
         event.preventDefault()
@@ -46,18 +55,20 @@ function Chat(){
     chat_messages(chat_id)
     let messages = JSON.parse(sessionStorage.getItem("messages"))
     let all_users = JSON.parse(sessionStorage.getItem("users"))
-    let users_in_chat = JSON.parse(sessionStorage.getItem("chat_users"))
+    // let users_in_chat = JSON.parse(sessionStorage.getItem("chat_users"))
     const filteredUsers = all_users.filter(user => {
         return user.username.toLowerCase().includes(searchUser.toLowerCase())
     })
+    let chat_admin = JSON.parse(sessionStorage.getItem("admin"))
     return (!dragEnter ?
         <div onDragEnter={onDragEnterHandler} onDrop={dropHandler} onDragLeave={onDragLeaveHandler} onDragOver={onDragEnterHandler}>
             <br></br>
-            <form className="Search-form">
+            {chat_admin.admin_id == sessionStorage.getItem("id") && <form className="Search-form">
                 <table>
                     <tr>
                         <th>
-                            <Input value={searchUser} setValue={setSearchUsers} type="text" placeholder="Пригласить пользователя"/>
+                            <Input value={searchUser} setValue={setSearchUsers} type="text"
+                                   placeholder="Пригласить пользователя"/>
                             <select onChange={(event) => create_invitation(event.target.value, chat_id)}>
                                 <option value={''}></option>
                                 {filteredUsers.map(info => (
@@ -71,6 +82,7 @@ function Chat(){
                     </tr>
                 </table>
             </form>
+            }
             <table>
                 {messages.map(message =>
                 <div className="Message">
