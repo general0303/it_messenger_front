@@ -1,0 +1,24 @@
+.Profile{
+    text-align: left;
+}
+
+.Profile:hover{
+    border: 1px solid black;
+    background-color: gainsboro;
+    border-radius: 20px;
+}
+
+.UpdateProfile{
+    border: none;
+    background-color: #04454d;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    width: 256px;
+}
+
+.UpdateProfile a {
+  color: white;
+  text-decoration: none;
+}

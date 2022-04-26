@@ -23,6 +23,7 @@ function Menu() {
                 <div className="Menu-Content">
                     <ul>
                         <li><NavLink to="/">Главная</NavLink></li>
+                        <li><NavLink to={"/users/"+sessionStorage.getItem("id")}>Профиль</NavLink></li>
                         {chats.map(chat =>
                                 <li key={chat.chat_id}><NavLink to={"/chats/" + chat.chat_id}>{chat.chat_name}</NavLink></li>
                         )}

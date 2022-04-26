@@ -22,6 +22,16 @@ export const authorization = async (username, password) => {
     }
 }
 
+export const getUser = async (id) => {
+    let header = 'Bearer ' + sessionStorage.getItem("token")
+    try {
+        const response = await axios.get('http://localhost:5000/users/'+id, {headers: {Authorization: header}})
+        sessionStorage.setItem("user", JSON.stringify(response.data))
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
 export const logout = () => {
     if (sessionStorage.getItem("token")) {
         sessionStorage.removeItem("token")

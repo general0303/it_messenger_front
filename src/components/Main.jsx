@@ -45,7 +45,7 @@ function Main(){
                                     <div className="Left">
                                         <div className="Image">
                                             {!chat.chat_image && <img alt="" src={not_image}/>}
-                                            {chat.chat_image && <img alt="" src={"http://localhost:5000/"+chat.chat_image}/>}
+                                            {chat.chat_image && <img alt="" src={"http://localhost:5000/"+chat.chat_image} width="48"/>}
                                         </div>
                                     </div>
                                 </th>
