@@ -6,6 +6,8 @@ export const current_user = async () => {
     try {
         const response = await axios.get('http://localhost:5000/current_user', {headers: {Authorization: header}})
         sessionStorage.setItem("invite", JSON.stringify(response.data.invites))
+        sessionStorage.setItem("username", response.data.username)
+        sessionStorage.setItem("avatar", response.data.avatar)
         return response.data
     } catch (e) {
         alert(e.response.data.message)
@@ -26,6 +28,21 @@ export const current_user_chats = () => {
     }
 }
 
+export const updateCurrentUser = async (name, file, active, setActive) => {
+    let header = 'Bearer ' + sessionStorage.getItem("token")
+    console.log(file)
+    const formData = new FormData()
+    formData.append("username", name)
+    formData.append("file", file)
+    try {
+        const response = await axios.put('http://localhost:5000/current_user',formData, {headers: {Authorization: header}})
+        setActive(false)
+        sessionStorage.setItem("username", name)
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
 export const createChat = async (name, file, navigate, active, setActive) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     console.log(file)
@@ -34,6 +51,19 @@ export const createChat = async (name, file, navigate, active, setActive) => {
     formData.append("file", file)
     try {
         const response = await axios.post('http://localhost:5000/chat',formData, {headers: {Authorization: header}})
+        setActive(false)
+        navigate("/chats/"+response.data.chat_id)
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
+export const updateChat = async (name, id, navigate, active, setActive) => {
+    let header = 'Bearer ' + sessionStorage.getItem("token")
+    const formData = new FormData()
+    formData.append("name", name)
+    try {
+        const response = await axios.put('http://localhost:5000/chats/'+id,formData, {headers: {Authorization: header}})
         setActive(false)
         navigate("/chats/"+response.data.chat_id)
     } catch (e) {

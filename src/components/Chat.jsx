@@ -68,7 +68,7 @@ function Chat(){
                     <tr>
                         <th>
                             <Input value={searchUser} setValue={setSearchUsers} type="text"
-                                   placeholder="Пригласить пользователя"/>
+                                   placeholder="Пригласить"/>
                             <select onChange={(event) => create_invitation(event.target.value, chat_id)}>
                                 <option value={''}></option>
                                 {filteredUsers.map(info => (

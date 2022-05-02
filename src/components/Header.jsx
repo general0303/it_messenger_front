@@ -41,12 +41,15 @@ function Header(){
                         <NavLink to="/"><img alt="" src={mail_mark}/></NavLink>
                     </div>
                 </div>}
-                <div className="Element">Название</div>
+                <div className="Element">MWITT</div>
             </div>
             {sessionStorage.getItem("token") && <div className="Right-part">
                 <div className="Element">
                     <div className="Avatar">
-                        <img alt="" src={not_image}/>
+                        <NavLink to={'/users/'+sessionStorage.getItem("id")}>
+                            {!sessionStorage.getItem("avatar") && <img alt="" src={not_image}/>}
+                            {sessionStorage.getItem("avatar") && <img alt="" src={"http://localhost:5000/"+sessionStorage.getItem("avatar")}/>}
+                        </NavLink>
                     </div>
                 </div>
             </div>}

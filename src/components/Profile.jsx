@@ -1,20 +1,25 @@
 import not_image from '../images/not_image.png'
 import '../styles/Profile.css'
-import {NavLink, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {getUser} from "../actions/user";
+import {useState} from "react";
+import Model from "./Model";
+import UpdateUser from "./UpdateUser";
 
 function Profile(){
     let user_id = useParams().user_id
     getUser(user_id)
     let user = JSON.parse(sessionStorage.getItem("user"))
+    const [modelActive, setModelActive] = useState(false)
     return (
         <div className="Profile">
             <table>
                 <tr>
                     <th>
-                        <img alt="" src={not_image} width="256"/>
+                        {!user.avatar && <img alt="" src={not_image} width="256"/>}
+                        {user.avatar && <img alt="" src={"http://localhost:5000/"+user.avatar} width="256"/>}
                         <br></br>
-                        {sessionStorage.getItem("id") === user_id && <button className="UpdateProfile"><NavLink to={"/users/"+user_id+"/update"}>Редактировать</NavLink></button>}
+                        {sessionStorage.getItem("id") === user_id && <button className="UpdateProfile" onClick={() => {setModelActive(true)}}>Редактировать</button>}
                     </th>
                     <th width="512">
                         <div className="Information">
@@ -31,6 +36,9 @@ function Profile(){
                     </th>
                 </tr>
             </table>
+            <Model active={modelActive} setActive={setModelActive}>
+                <UpdateUser active={modelActive} setActive={setModelActive}/>
+            </Model>
         </div>
     )
 }

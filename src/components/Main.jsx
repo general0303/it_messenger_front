@@ -6,16 +6,18 @@ import Input from "./Input";
 import {useState} from "react";
 import search from '../images/search.png'
 import {deleteChat, leftChat} from "../actions/chat";
+import Model from "./Model";
+import UpdateChat from "./UpdateChat";
 
 function Main(){
-    let data = current_user()
+    current_user()
     let chats
     chats = JSON.parse(sessionStorage.getItem("chats"))
     const [value, setValue] = useState("")
+    const [modelActive, setModelActive] = useState(false)
     if (!chats) {
         return
     }
-
     const filteredChats = chats.filter(chat => {
         return chat.chat_name.toLowerCase().includes(value.toLowerCase())
     })
@@ -56,9 +58,12 @@ function Main(){
                                         <NavLink to={"/chats/"+chat.chat_id}>
                                             <div className="Name">{chat.chat_name}</div>
                                         </NavLink>
-                                        {sessionStorage.getItem("username") === chat.admin.username && <button className="Update" onClick={() => deleteChat(chat.chat_id)}>Редактировать</button>}
+                                        {sessionStorage.getItem("username") === chat.admin.username && <button className="Update" onClick={() => setModelActive(true)}>Редактировать</button>}
                                         {sessionStorage.getItem("username") === chat.admin.username && <button className="Delete" onClick={() => deleteChat(chat.chat_id)}>Удалить</button>}
                                         {sessionStorage.getItem("username") !== chat.admin.username && <button className="Delete" onClick={() => leftChat(chat.chat_id)}>Покинуть чат</button>}
+                                        <Model active={modelActive} setActive={setModelActive}>
+                                            <UpdateChat active={modelActive} setActive={setModelActive} chat_name={chat.chat_name} chat_id={chat.chat_id}/>
+                                        </Model>
                                     </div>
                                 </th>
                             </tr>
