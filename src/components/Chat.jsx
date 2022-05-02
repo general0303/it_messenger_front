@@ -106,7 +106,7 @@ function Chat(){
                             <tr>
                                 <th width="100px"></th>
                                 {message.attachments.map(file =>
-                                    <th><a href={"http://localhost:5000/"+file.link}><img alt="" src={file_icon} /></a></th>
+                                    <th><a href={"https://it-messenger-back.herokuapp.com/"+file.link}><img alt="" src={file_icon} /></a></th>
                                 )}
                             </tr>
                         </th>

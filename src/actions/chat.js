@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const chat_messages = (id) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
-    let url = 'http://localhost:5000/chats/'+id+'/messages'
+    let url = 'https://it-messenger-back.herokuapp.com/chats/'+id+'/messages'
     try {
         const response = axios.get(url, {headers: {Authorization: header}}).then((response) => {
             if (!sessionStorage.getItem("messages")){
@@ -16,7 +16,7 @@ export const chat_messages = (id) => {
 
 export const write_message = (id, body) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
-    let url = 'http://localhost:5000/chats/'+id+'/message'
+    let url = 'https://it-messenger-back.herokuapp.com/chats/'+id+'/message'
     try {
         const response = axios.post(url, {body},{headers: {Authorization: header}}).then((response) => {
             document.location.reload()})
@@ -27,7 +27,7 @@ export const write_message = (id, body) => {
 
 export const users = (id) => {
     try {
-        const response = axios.get('http://localhost:5000/chat_users/'+id).then((response) => {
+        const response = axios.get('https://it-messenger-back.herokuapp.com/chat_users/'+id).then((response) => {
             sessionStorage.setItem('users', JSON.stringify(response.data.users))
         })
     } catch (e) {
@@ -38,7 +38,7 @@ export const users = (id) => {
 export const admin = (id) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     try {
-        const response = axios.get('http://localhost:5000/chats/'+id, {headers: {Authorization: header}}).then((response) => {
+        const response = axios.get('https://it-messenger-back.herokuapp.com/chats/'+id, {headers: {Authorization: header}}).then((response) => {
             sessionStorage.setItem('admin', JSON.stringify(response.data.admin))
         })
     } catch (e) {
@@ -49,7 +49,7 @@ export const admin = (id) => {
 export const deleteChat = (id) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     try {
-        const response = axios.delete('http://localhost:5000/chats/'+id, {headers: {Authorization: header}}).then((response) => {
+        const response = axios.delete('https://it-messenger-back.herokuapp.com/chats/'+id, {headers: {Authorization: header}}).then((response) => {
             document.location.reload()
         })
     } catch (e) {
@@ -61,7 +61,7 @@ export const deleteChat = (id) => {
 export const leftChat = (id) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     try {
-        const response = axios.delete('http://localhost:5000/chats/'+id+'/left', {headers: {Authorization: header}}).then((response) => {
+        const response = axios.delete('https://it-messenger-back.herokuapp.com/chats/'+id+'/left', {headers: {Authorization: header}}).then((response) => {
             document.location.reload()
         })
     } catch (e) {
@@ -72,7 +72,7 @@ export const leftChat = (id) => {
 export const chat_users = (id) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     try {
-        const response = axios.get('http://localhost:5000/chats/'+id+'/users', {headers: {Authorization: header}}).then((response) => {
+        const response = axios.get('https://it-messenger-back.herokuapp.com/chats/'+id+'/users', {headers: {Authorization: header}}).then((response) => {
             sessionStorage.setItem('chat_users', JSON.stringify(response.data))
         })
     } catch (e) {
@@ -82,7 +82,7 @@ export const chat_users = (id) => {
 
 export const create_attachment = (id, files) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
-    let url = 'http://localhost:5000/create_attachment'
+    let url = 'https://it-messenger-back.herokuapp.com/create_attachment'
     const formData = new FormData()
     //formData.append("file", file)
     for (let i=0; i<files.length; i++){
@@ -100,7 +100,7 @@ export const create_attachment = (id, files) => {
 export const create_invitation = (user_id, chat_id) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     try {
-        const response = axios.post('http://localhost:5000/invitation', {user_id, chat_id},{headers: {Authorization: header}}).then((response) => {
+        const response = axios.post('https://it-messenger-back.herokuapp.com/invitation', {user_id, chat_id},{headers: {Authorization: header}}).then((response) => {
             console.log(1)
             document.location.reload()})
     } catch (e) {

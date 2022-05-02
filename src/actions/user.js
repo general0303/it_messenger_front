@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const registration = async (username, email, password) => {
     try {
-        const response = await axios.post('http://localhost:5000/registration', {username, email, password})
+        const response = await axios.post('https://it-messenger-back.herokuapp.com/registration', {username, email, password})
         //sessionStorage.setItem("token", response.data.token)
         document.location.reload()
     } catch (e) {
@@ -12,7 +12,7 @@ export const registration = async (username, email, password) => {
 
 export const authorization = async (username, password) => {
     try {
-        const response = await axios.post('http://localhost:5000/login', {username, password})
+        const response = await axios.post('https://it-messenger-back.herokuapp.com/login', {username, password})
         sessionStorage.setItem("token", response.data.token)
         sessionStorage.setItem("id", response.data.id)
         sessionStorage.setItem("username", username)
@@ -25,7 +25,7 @@ export const authorization = async (username, password) => {
 export const getUser = async (id) => {
     let header = 'Bearer ' + sessionStorage.getItem("token")
     try {
-        const response = await axios.get('http://localhost:5000/users/'+id, {headers: {Authorization: header}})
+        const response = await axios.get('https://it-messenger-back.herokuapp.com/users/'+id, {headers: {Authorization: header}})
         if (!sessionStorage.getItem("user")){
                 document.location.reload()
             }

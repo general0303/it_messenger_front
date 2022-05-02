@@ -48,7 +48,7 @@ function Main(){
                                         <NavLink to={"/chats/"+chat.chat_id}>
                                         <div className="Image">
                                             {!chat.chat_image && <img alt="" src={not_image}/>}
-                                            {chat.chat_image && <img alt="" src={"http://localhost:5000/"+chat.chat_image} width="48"/>}
+                                            {chat.chat_image && <img alt="" src={"https://it-messenger-back.herokuapp.com/"+chat.chat_image} width="48"/>}
                                         </div>
                                             </NavLink>
                                     </div>

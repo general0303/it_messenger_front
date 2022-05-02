@@ -48,7 +48,7 @@ function Header(){
                     <div className="Avatar">
                         <NavLink to={'/users/'+sessionStorage.getItem("id")}>
                             {!sessionStorage.getItem("avatar") && <img alt="" src={not_image}/>}
-                            {sessionStorage.getItem("avatar") && <img alt="" src={"http://localhost:5000/"+sessionStorage.getItem("avatar")}/>}
+                            {sessionStorage.getItem("avatar") && <img alt="" src={"https://it-messenger-back.herokuapp.com/"+sessionStorage.getItem("avatar")}/>}
                         </NavLink>
                     </div>
                 </div>

@@ -24,7 +24,7 @@ function Invitation({active, setActive}) {
                         <div className="Image">
                             <div className="Image">
                                 {!invite.chat_image && <img alt="" src={not_image}/>}
-                                {invite.chat_image && <img alt="" src={"http://localhost:5000/"+invite.chat_image}/>}
+                                {invite.chat_image && <img alt="" src={"https://it-messenger-back.herokuapp.com/"+invite.chat_image}/>}
                             </div>
                         </div>
                     </th>

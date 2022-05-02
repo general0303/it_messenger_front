@@ -17,7 +17,7 @@ function Profile(){
                 <tr>
                     <th>
                         {!user.avatar && <img alt="" src={not_image} width="256"/>}
-                        {user.avatar && <img alt="" src={"http://localhost:5000/"+user.avatar} width="256"/>}
+                        {user.avatar && <img alt="" src={"https://it-messenger-back.herokuapp.com/"+user.avatar} width="256"/>}
                         <br></br>
                         {sessionStorage.getItem("id") === user_id && <button className="UpdateProfile" onClick={() => {setModelActive(true)}}>Редактировать</button>}
                     </th>
